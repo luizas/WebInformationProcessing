@@ -1,0 +1,34 @@
+<!--Write Javascript (JS) functions showDiv() and hideDiv(), that show 
+and hide a DIV element, respectively. Create appropriate CSS to style 
+links (<a>…</a>) so that they appear in red with a “hand” type cursor, 
+and without underlining. Create an HTML page with sample links that, 
+whenever the mouse hovers over the link, a DIV element containing a single 
+line of text appears to the right of the mouse pointer. Provide the 
+complete HTML, CSS and JS for this example, including the DIV element, button and their respective CSS styles.-->
+
+
+<!DOCTYPE html>
+<html>
+<head>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+
+<script>
+$(document).ready(function(){
+    $("#button").click(function(){
+        $("#output").toggle();
+    });
+});
+
+
+</script>
+
+</head>
+<body>
+
+<div id="output">check tahnwqnxn jwnxjnqwknxn </div><br>
+<button type="button" id="button">Show/Hidde</button>
+
+
+</body>
+</html>
