@@ -1,4 +1,4 @@
-//XML file (mylist.xml) look like 
+//XML file (mylist.xml) looks like 
 //<store>
 //<storename>DS</storename>
 //<entering>101</entering>
