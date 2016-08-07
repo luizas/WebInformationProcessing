@@ -1,0 +1,59 @@
+<!--Write a Javascript (JS) function changeAll() that restyles all text 
+in a specified DIV element containing some text when a button is clicked 
+by the user. The restyling should capitalise all words, for example,
+ “There are seven words in this sentence!” would be changed to “THERE 
+ ARE SEVEN WORDS IN THIS SENTENCE!”. Give the HTML code for the button 
+ that is used to invoke changeAll().-->
+
+<!DOCTYPE html>
+<html>
+<head>
+<style type="text/CSS">
+body{
+font-family:Times New Roman;
+font-size:15px;
+
+}
+textarea {
+  font-family:Times New Roman;
+  font-size:15px;
+  border:2px solid black;
+  width: 300px;
+  height: 217px;
+  padding:10px;
+ }
+
+
+span{
+  text-decoration: underline;
+}
+
+button{
+  text-align: center;
+  width: 100px; 
+}
+</style>
+<script>
+
+function bigLetters(){
+
+  var szukane = document.getElementById("input").innerHTML;
+  var lol=szukane.toUpperCase();
+ 
+  document.getElementById("input").innerHTML = lol;
+
+}
+</script>
+
+</head>
+<body>
+
+<div id="input">
+34222 is a truth 3 </div>
+
+
+
+<button onClick="bigLetters()">bigLetters</button>
+
+</body>
+</html>
