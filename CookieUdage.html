@@ -1,0 +1,93 @@
+<!--Write a suite of javascript functions, which are automatically executed after a page loads,
+that informs the user (using an in-page dialog) that site-usage requires acknowledgement of
+cookie usage. The dialog should contain a message and single button which is used to receive
+acknowledgement from the user that the message has been read. The dialog should continue to
+be presented until the acknowledgement button has been pressed by the user. The dialog should
+be a CSS-styled DIV element which is located at the top of the window and, while visible, overlaps
+page content. You may assume that writeCookie() and readCookie() functions exist; you do not have
+to develop the internal content of these functions.-->
+
+<!DOCTYPE html>
+<html>
+<head>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+
+	<style>
+		/*The Modal takes up the full screen but uses opacity to give a locked out effect*/
+
+		.modal {
+			position: fixed;
+			z-index: 1;
+			left:0;
+			top:0;
+			width: 100%;
+			height: 100%;
+			background-color: rgba(0,0,0,0.4); /*Black with Opacity*/
+		}
+
+		/*The actual content of the modal*/
+
+		.modal-content {
+			background-color: #fefefe;
+			padding: 20px;
+			border: 1px solid black;
+			
+			text-align:center;
+		}
+	</style>
+</head>
+
+<body onload="checkCookie()">
+
+	<div>
+		This is a div!
+	</div>
+
+	<div id="cookieModal" class="modal">
+	  <!-- Modal content -->
+	  <div class="modal-content">
+			<p>This site uses Cookies.</p>
+			<button type="button" id="acceptBtn" >Accept</button>
+	  </div>
+	</div>
+
+	<script>
+
+		function setCookie(cname, cvalue, exdays) {
+			var d = new Date();
+			d.setTime(d.getTime() + (exdays*24*60*60*1000));//set a date for expiration
+			var expires = "expires="+d.toUTCString();
+			document.cookie = cname + "=" + cvalue + "; " + expires;
+		}
+
+		
+		function getCookie(cname) {
+			var name = cname + "=";
+			var cookieArray = document.cookie.split(';');
+			for(var i=0; i<cookieArray.length; i++) {
+				var c = cookieArray[i];
+				while (c.charAt(0)==' ') c = c.substring(1);
+				if (c.indexOf(name) == 0) return c.substring(name.length,c.length);
+			}
+			return "";
+		}
+
+		function checkCookie() {
+			var visited=getCookie("visit");
+			if (visited!="") {
+				$('#cookieModal').hide();
+			}else{
+				
+				$('#cookieModal').show();
+			}
+		}
+
+		
+		$('#acceptBtn').click(function(){
+			setCookie("visit","true", 2);
+			 $('#cookieModal').hide();
+		});
+	</script>
+
+</body>
+</html>
