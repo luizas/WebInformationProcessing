@@ -1,0 +1,103 @@
+<!--Write a suite of javascript functions, which are automatically executed 
+after a page loads, that informs the user (using an in-page dialog) that 
+site-usage requires acceptance of terms of service (ToS). The dialog 
+should contain a message and two buttons which may be used to agree or 
+disagree to the ToS, together with a link to the ToS page. The dialog 
+should continue to be presented until the either button has been pressed by the user. 
+Clicking the ToS link should open the ToS page in a new window or tab. The dialog should
+ be a CSS-styled DIV element which is located in the centre of the window and, while visible,
+ disables access to page content. Accepting the ToS should ensure the modal dialog disappears 
+ is never re-presented on subsequent visits. Unaccepting the ToS should ensure redirection to 
+ another site, and continued re-presentation 
+of the dialog on subsequent visits. You may assume that writeCookie() and readCookie() 
+functions exist; you do not have to develop the internal content of these functions.-->
+<!DOCTYPE html>
+<html>
+<head>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+
+	<style>
+	
+
+		.modal {
+			position: fixed;
+			z-index: 1;
+			left:0;
+			top:0;
+			width: 100%;
+			height: 100%;
+			background-color: gray;
+		}
+
+		
+
+		.modal-content {
+			margin: 15% auto;
+			background-color:white;
+			padding: 20px;
+			border: 1px solid black;
+			width: 60%;
+			text-align:center;
+		}
+	</style>
+</head>
+
+<body onload="checkCookie()">
+
+
+	<div>
+		aloha
+	</div>
+
+	<div id="cookieModal" class="modal">
+	  <div class="modal-content">
+			<p>This site requires acceptance of ToS</p>
+			<button type="button" id="acceptBtn" >Accept</button>
+			<button type="button" id="reject">Reject</button><br><br>
+                        <a href="https://en.wordpress.com/tos/" target="_blank">This is a link ToS</a>
+	  </div>
+	</div>
+
+	<script>
+		
+		function writeCookie(cname, cvalue, exdays) {
+			var d = new Date();
+			d.setTime(d.getTime() + (exdays*12*60*60*1000));
+			var expires = "expires="+d.toUTCString();
+			document.cookie = cname + "=" + cvalue + "; " + expires;
+		}
+
+		
+		function readCookie(cname) {
+			var name = cname + "=";
+			var cookieArray = document.cookie.split(';');
+			for(var i=0; i<cookieArray.length; i++) {
+				var c = cookieArray[i];
+				while (c.charAt(0)==' ') c = c.substring(1);
+				if (c.indexOf(name) == 0) return c.substring(name.length,c.length);
+			}
+			return "";
+		}
+
+		function checkCookie() {
+			var viewed=readCookie("view2");
+			if (viewed!="") {
+				$('#cookieModal').hide();
+			}else{
+				
+				$('#cookieModal').show();
+			}
+		}
+
+		
+		$('#acceptBtn').click(function(){
+			writeCookie("view2","true", 2);
+			 $('#cookieModal').hide();
+		});
+			$('#reject').click(function(){
+	       window.location="http://www.google.pl"
+		});
+	</script>
+
+</body>
+</html>
