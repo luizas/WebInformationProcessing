@@ -1,5 +1,5 @@
 //Json file(tesco.json) looks like("shop":"Tesco","in":"0","out":"80"}
-//every 30 sec check data in json
+//every 30 sec check data in json file
 
 <!doctype html>
 <html lang="en">
